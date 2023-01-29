@@ -1,0 +1,12 @@
+:root {
+   --text-color: 0, 0%, 15%;
+   --background-color: 0, 0%, 100%;
+   --accent-color: 275, 83%, 60%;
+   --grey-color: 0, 0%, 63%;
+   /* hsl( var(--background-color) / .25); прозрачность */
+}
+
+:root.dark {
+   --text-color: 0, 0%, 100%;
+   --background-color: 0, 0%, 15%;
+}
