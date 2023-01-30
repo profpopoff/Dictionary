@@ -1,19 +1,20 @@
 <script setup>
 import { useDark, useToggle } from '@vueuse/core'
+import CustomToggle from './ui/CustomToggle.vue'
+import MoonIcon from './icons/MoonIcon.vue'
 
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-   <button class="button" @click="toggleDark()">
-      Dark mode: {{ isDark }}
-   </button>
+   <CustomToggle class="toggle" @change="toggleDark()" :isChecked="isDark">
+      <MoonIcon />
+   </CustomToggle>
 </template>
 
 <style scoped>
-.button {
-   color: hsl(var(--accent-color));
-   background-color: hsl(var(--text-color));
+.toggle {
+   gap: 1em;
 }
 </style>
