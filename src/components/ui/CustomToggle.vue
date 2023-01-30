@@ -46,7 +46,7 @@ const props = defineProps({
    -webkit-appearance: none;
    -moz-appearance: none;
    appearance: none;
-   transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.4);
+   transition: all 0.3s ease-in-out;
 }
 
 .custom-toggle__input::after {
