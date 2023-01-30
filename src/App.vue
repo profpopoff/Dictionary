@@ -6,7 +6,7 @@ import HeaderComponent from '@/components/Header.vue'
   <HeaderComponent class="container" />
 
   <main class="container">
-    <h1>main</h1>
+    <h1>keyboard</h1>
   </main>
 </template>
 
@@ -17,6 +17,8 @@ import HeaderComponent from '@/components/Header.vue'
 body {
   background-color: hsl(var(--background-color));
   color: hsl(var(--text-color));
+  font-family: 'Lora', serif;
+  /* font-family: 'Roboto', sans-serif; */
   font-size: 1rem;
   transition: color .3s ease-in-out, background-color .3s ease-in-out;
 }
