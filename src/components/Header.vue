@@ -1,10 +1,12 @@
 <script setup>
+import DarkModeToggle from './DarkModeToggle.vue'
 import Logo from './icons/Logo.vue'
 </script>
 
 <template>
    <header>
       <Logo />
+      <DarkModeToggle />
    </header>
 </template>
 
