@@ -1,25 +1,29 @@
 <script setup>
-import DarkModeToggle from './components/DarkModeToggle.vue'
+import HeaderComponent from '@/components/Header.vue'
 </script>
 
 <template>
-  <header>
-    <h2>header</h2>
-  </header>
+  <HeaderComponent class="container" />
 
-  <main>
+  <main class="container">
     <h1>main</h1>
-    <DarkModeToggle />
   </main>
 </template>
 
 <style>
-@import url('./styles/reset.css');
-@import url('./styles/variables.css');
+@import url('@/styles/reset.css');
+@import url('@/styles/variables.css');
 
 body {
   background-color: hsl(var(--background-color));
   color: hsl(var(--text-color));
+  font-size: 1rem;
   transition: color .3s ease-in-out, background-color .3s ease-in-out;
+}
+
+.container {
+  max-width: 64rem;
+  padding-inline: 2em;
+  margin-inline: auto;
 }
 </style>
