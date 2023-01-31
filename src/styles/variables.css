@@ -3,6 +3,8 @@
    --background-color: 0 0% 100%;
    --accent-color: 275 83% 60%;
    --grey-color: 0 0% 63%;
+
+   --dark-theme-transition: color .3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 :root.dark {

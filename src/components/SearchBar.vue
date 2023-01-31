@@ -34,7 +34,7 @@ const word = ref('')
    color: hsl(var(--text-color));
    font-size: 1.3em;
    font-weight: 700;
-   transition: color .3s ease-in-out;
+   transition: var(--dark-theme-transition);
 }
 
 .search-bar__button {
