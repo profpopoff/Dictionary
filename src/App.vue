@@ -1,17 +1,21 @@
 <script setup>
 import { ref } from 'vue'
 import HeaderComponent from '@/components/Header.vue'
-import SearchBar from './components/SearchBar.vue'
+import SearchBar from '@/components/SearchBar.vue'
+import WordInfo from '@/components/WordInfo.vue'
 
-const definition = ref('')
+const wordInfo = ref('')
+const isLoading = ref(false)
 
-const getDefinition = async (word) => {
+const getWordInfo = async (word) => {
   if (!!word) {
+    isLoading.value = true
     await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
       .then(response => response.json())
-      .then(data => definition.value = data)
+      .then(data => wordInfo.value = data)
+    isLoading.value = false
   } else {
-    definition.value = ''
+    wordInfo.value = ''
   }
 }
 </script>
@@ -20,8 +24,11 @@ const getDefinition = async (word) => {
   <HeaderComponent class="container" />
 
   <main class="container">
-    <SearchBar @get-word="getDefinition" />
-    <h1 v-if="definition.length">{{ definition[0].word }}</h1>
+    <SearchBar @get-word="getWordInfo" />
+    <WordInfo v-if="wordInfo[0]" :wordInfo="wordInfo[0]" />
+    <h1 v-else-if="wordInfo.message">{{ wordInfo.message }}</h1>
+    <h2 v-else-if="isLoading">loading</h2>
+    <h2 v-else>ИСкать тут ^</h2>
   </main>
 </template>
 
@@ -35,12 +42,19 @@ body {
   font-family: 'Lora', serif;
   /* font-family: 'Roboto', sans-serif; */
   font-size: 1rem;
-  transition: color .3s ease-in-out, background-color .3s ease-in-out;
+  transition: var(--dark-theme-transition);
 }
 
 .container {
-  max-width: 64rem;
+  max-width: 56rem;
   padding-inline: 2em;
   margin-inline: auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-bottom: 5em;
 }
 </style>
