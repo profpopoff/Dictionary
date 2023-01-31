@@ -20,6 +20,8 @@ const word = ref('')
    width: auto;
    display: flex;
    align-items: center;
+   border-radius: 1em;
+   overflow: hidden;
 }
 
 .search-bar__input {
@@ -27,7 +29,6 @@ const word = ref('')
    flex: 1;
    padding-left: 1.25em;
    background-color: hsl(var(--grey-color) / .25);
-   border-radius: 1em 0 0 1em;
    border: none;
    outline: none;
    color: hsl(var(--text-color));
@@ -42,7 +43,6 @@ const word = ref('')
    display: flex;
    justify-content: center;
    background-color: hsl(var(--grey-color) / .25);
-   border-radius: 0 1em 1em 0;
    border: none;
    color: hsl(var(--accent-color));
    cursor: pointer;
