@@ -74,7 +74,8 @@ h3 {
 
 .synonyms {
    display: flex;
-   gap: 1.5em;
+   gap: .5em 1.5em;
+   flex-wrap: wrap;
 }
 
 .synonym {
