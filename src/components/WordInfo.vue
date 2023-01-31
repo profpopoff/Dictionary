@@ -24,9 +24,9 @@ const props = defineProps({
          </div>
          <button></button>
       </div>
-      <!-- <div class="meanings">
+      <div class="meanings">
          <Meaning v-for="meaning in wordInfo.meanings" :meaning="meaning" />
-      </div> -->
+      </div>
       <div class="source">
          <span>Source</span> <a :href="wordInfo.sourceUrls[0]">{{ wordInfo.sourceUrls[0] }}</a>
       </div>
