@@ -1,12 +1,27 @@
 <script setup>
+import { ref } from 'vue'
 import HeaderComponent from '@/components/Header.vue'
+import SearchBar from './components/SearchBar.vue'
+
+const definition = ref('')
+
+const getDefinition = async (word) => {
+  if (!!word) {
+    await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+      .then(response => response.json())
+      .then(data => definition.value = data)
+  } else {
+    definition.value = ''
+  }
+}
 </script>
 
 <template>
   <HeaderComponent class="container" />
 
   <main class="container">
-    <h1>keyboard</h1>
+    <SearchBar @get-word="getDefinition" />
+    <h1 v-if="definition.length">{{ definition[0].word }}</h1>
   </main>
 </template>
 
