@@ -11,7 +11,7 @@ const props = defineProps({
       <h2><span>{{ meaning.partOfSpeech }}</span></h2>
       <h3>Meaning</h3>
       <ul class="definitions">
-         <!-- <Definition v-for="definition in meaning.definitions" :definition="definition" /> -->
+         <Definition v-for="definition in meaning.definitions" :definition="definition" />
       </ul>
       <div class="synonyms" v-if="meaning.synonyms.length">
          <h3>Synonym<span v-if="meaning.synonyms.length > 1">s</span></h3>
