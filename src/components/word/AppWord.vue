@@ -59,5 +59,6 @@ const props = defineProps({
 .source a {
    color: hsl(var(--text-color));
    transition: var(--dark-theme-transition);
+  margin-bottom: 7.5em;
 }
 </style>

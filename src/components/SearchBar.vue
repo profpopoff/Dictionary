@@ -42,6 +42,7 @@ const word = ref('')
    height: 100%;
    aspect-ratio: 1;
    display: flex;
+   align-items: center;
    justify-content: center;
    background-color: hsl(var(--grey-color) / .25);
    border: none;

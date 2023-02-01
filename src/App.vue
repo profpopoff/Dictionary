@@ -66,6 +66,5 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  margin-bottom: 5em;
 }
 </style>
