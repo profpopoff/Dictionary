@@ -14,7 +14,8 @@ const props = defineProps({
       <div class="headline">
          <WordInfo :word="wordInfo.word"
             :phonetics="[...new Set(wordInfo.phonetics.map(({ text }) => text).filter(notEmpty => notEmpty))]" />
-         <WordAudio :audios="wordInfo.phonetics.map(({ audio }) => audio).filter(notEmpty => notEmpty)" />
+         <WordAudio v-if="!!wordInfo.phonetics.map(({ audio }) => audio).filter(notEmpty => notEmpty).length"
+            :audios="wordInfo.phonetics.map(({ audio }) => audio).filter(notEmpty => notEmpty)" />
       </div>
       <div class="meanings">
          <WordMeaning v-for="meaning in wordInfo.meanings" :meaning="meaning" />
