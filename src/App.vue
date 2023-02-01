@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import AppHeader from '@/components/layout/header/AppHeader.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import AppWord from '@/components/word/AppWord.vue'
@@ -8,11 +8,21 @@ import LoadingIndicator from './components/LoadingIndicator.vue'
 const wordInfo = ref('')
 const isLoading = ref(false)
 
+onMounted(() => {
+  getWordInfo('dictionary')
+})
+
 const getWordInfo = async (word) => {
   wordInfo.value = ''
   if (!!word) {
     isLoading.value = true
     await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+      .then(response => response.json())
+      .then(data => wordInfo.value = data)
+    isLoading.value = false
+  } else {
+    isLoading.value = true
+    await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/dictionary')
       .then(response => response.json())
       .then(data => wordInfo.value = data)
     isLoading.value = false
