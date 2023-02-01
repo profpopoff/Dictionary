@@ -1,9 +1,28 @@
 <script setup>
-import Meaning from './Meaning.vue'
+import { onMounted, ref } from 'vue'
+import WordMeaning from './WordMeaning.vue'
+import CustomPlayButton from './ui/CustomPlayButton.vue'
 
 const props = defineProps({
    wordInfo: Object
 })
+
+const audio = ref(null)
+const isPlaying = ref(false)
+
+onMounted(() => {
+   audio.value.focus()
+})
+
+const audioClickHandle = () => {
+   isPlaying.value = !isPlaying.value
+
+   if (audio.value.paused) {
+      audio.value.play()
+   } else {
+      audio.value.pause()
+   }
+}
 </script>
 
 <template>
@@ -22,10 +41,16 @@ const props = defineProps({
                wordInfo.phonetics[2].text
             }}</h3>
          </div>
-         <button></button>
+         <audio v-if="!!wordInfo.phonetics[0].audio" :src="wordInfo.phonetics[0].audio" @ended="isPlaying = !isPlaying"
+            ref="audio"></audio>
+         <audio v-else-if="!!wordInfo.phonetics[1].audio" :src="wordInfo.phonetics[1].audio"
+            @ended="isPlaying = !isPlaying" ref="audio"></audio>
+         <audio v-else-if="!!wordInfo.phonetics[2].audio" :src="wordInfo.phonetics[2].audio"
+            @ended="isPlaying = !isPlaying" ref="audio"></audio>
+         <CustomPlayButton @click="audioClickHandle" :isPlaying="isPlaying" />
       </div>
       <div class="meanings">
-         <Meaning v-for="meaning in wordInfo.meanings" :meaning="meaning" />
+         <WordMeaning v-for="meaning in wordInfo.meanings" :meaning="meaning" />
       </div>
       <div class="source">
          <span>Source</span> <a :href="wordInfo.sourceUrls[0]">{{ wordInfo.sourceUrls[0] }}</a>
@@ -46,7 +71,7 @@ const props = defineProps({
    align-items: center;
 }
 
-.word div {
+.word>div:first-child {
    display: flex;
    flex-direction: column;
    gap: .5em;
@@ -60,14 +85,6 @@ const props = defineProps({
    font-family: 'Roboto', sans-serif;
    font-weight: 400;
    color: hsl(var(--accent-color));
-}
-
-.word button {
-   width: 5em;
-   aspect-ratio: 1;
-   border-radius: 50%;
-   border: none;
-   background-color: hsl(var(--accent-color) / .25);
 }
 
 .meanings {
