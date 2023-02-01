@@ -1,28 +1,11 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import WordAudio from './WordAudio.vue'
 import WordMeaning from './WordMeaning.vue'
-import CustomPlayButton from './ui/CustomPlayButton.vue'
 
 const props = defineProps({
    wordInfo: Object
 })
 
-const audio = ref(null)
-const isPlaying = ref(false)
-
-onMounted(() => {
-   audio.value.focus()
-})
-
-const audioClickHandle = () => {
-   isPlaying.value = !isPlaying.value
-
-   if (audio.value.paused) {
-      audio.value.play()
-   } else {
-      audio.value.pause()
-   }
-}
 </script>
 
 <template>
@@ -41,13 +24,7 @@ const audioClickHandle = () => {
                wordInfo.phonetics[2].text
             }}</h3>
          </div>
-         <audio v-if="!!wordInfo.phonetics[0].audio" :src="wordInfo.phonetics[0].audio" @ended="isPlaying = !isPlaying"
-            ref="audio"></audio>
-         <audio v-else-if="!!wordInfo.phonetics[1].audio" :src="wordInfo.phonetics[1].audio"
-            @ended="isPlaying = !isPlaying" ref="audio"></audio>
-         <audio v-else-if="!!wordInfo.phonetics[2].audio" :src="wordInfo.phonetics[2].audio"
-            @ended="isPlaying = !isPlaying" ref="audio"></audio>
-         <CustomPlayButton @click="audioClickHandle" :isPlaying="isPlaying" />
+         <WordAudio :phonetics="wordInfo.phonetics" />
       </div>
       <div class="meanings">
          <WordMeaning v-for="meaning in wordInfo.meanings" :meaning="meaning" />
@@ -71,7 +48,7 @@ const audioClickHandle = () => {
    align-items: center;
 }
 
-.word>div:first-child {
+.word>div {
    display: flex;
    flex-direction: column;
    gap: .5em;
