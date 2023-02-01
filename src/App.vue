@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import HeaderComponent from '@/components/AppHeader.vue'
+import AppHeader from '@/components/layout/header/AppHeader.vue'
 import SearchBar from '@/components/SearchBar.vue'
-import AppWord from '@/components/AppWord.vue'
+import AppWord from '@/components/word/AppWord.vue'
 import LoadingIndicator from './components/LoadingIndicator.vue'
 
 const wordInfo = ref('')
@@ -24,7 +24,7 @@ const getWordInfo = async (word) => {
 </script>
 
 <template>
-  <HeaderComponent class="container" />
+  <AppHeader class="container" />
 
   <main class="container">
     <SearchBar @get-word="getWordInfo" />

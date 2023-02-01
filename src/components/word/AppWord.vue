@@ -1,6 +1,6 @@
 <script setup>
 import WordAudio from './WordAudio.vue'
-import WordInfo from './WordInfo.vue';
+import WordInfo from './WordInfo.vue'
 import WordMeaning from './WordMeaning.vue'
 
 const props = defineProps({

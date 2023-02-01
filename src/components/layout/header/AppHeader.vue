@@ -1,5 +1,5 @@
 <script setup>
-import LogoIcon from './icons/LogoIcon.vue'
+import LogoIcon from '../../icons/LogoIcon.vue'
 import FontFamilySelector from './FontFamilySelector.vue'
 import DarkModeToggle from './DarkModeToggle.vue'
 </script>

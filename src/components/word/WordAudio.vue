@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import CustomPlayButton from './ui/CustomPlayButton.vue'
+import CustomPlayButton from '../ui/CustomPlayButton.vue'
 
 const props = defineProps({
    audios: Array
