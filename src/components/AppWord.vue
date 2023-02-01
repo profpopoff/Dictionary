@@ -9,9 +9,9 @@ const props = defineProps({
 </script>
 
 <template>
-   <div class="word-info">
-      <div class="word">
-         <div>
+   <div class="word">
+      <div class="headline">
+         <div class="info">
             <h1>{{ wordInfo.word }}</h1>
             <h3 v-if="!!wordInfo.phonetic">{{ wordInfo.phonetic }}</h3>
             <h3 v-else-if="!!wordInfo.phonetics[0].text">{{
@@ -36,29 +36,29 @@ const props = defineProps({
 </template>
 
 <style scoped>
-.word-info {
+.word {
    display: flex;
    flex-direction: column;
    gap: 2em;
 }
 
-.word {
+.headline {
    display: flex;
    justify-content: space-between;
    align-items: center;
 }
 
-.word>div {
+.info {
    display: flex;
    flex-direction: column;
    gap: .5em;
 }
 
-.word h1 {
+.info h1 {
    font-size: 3em;
 }
 
-.word h3 {
+.info h3 {
    font-family: 'Roboto', sans-serif;
    font-weight: 400;
    color: hsl(var(--accent-color));

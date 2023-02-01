@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import HeaderComponent from '@/components/AppHeader.vue'
 import SearchBar from '@/components/SearchBar.vue'
-import WordInfo from '@/components/WordInfo.vue'
+import AppWord from '@/components/AppWord.vue'
 
 const wordInfo = ref('')
 const isLoading = ref(false)
@@ -25,7 +25,7 @@ const getWordInfo = async (word) => {
 
   <main class="container">
     <SearchBar @get-word="getWordInfo" />
-    <WordInfo v-if="wordInfo[0]" :wordInfo="wordInfo[0]" />
+    <AppWord v-if="wordInfo[0]" :wordInfo="wordInfo[0]" />
     <h1 v-else-if="wordInfo.message">{{ wordInfo.message }}</h1>
     <h2 v-else-if="isLoading">loading</h2>
     <h2 v-else>ИСкать тут ^</h2>
