@@ -27,6 +27,7 @@ const word = ref('')
 .search-bar__input {
    height: 100%;
    flex: 1;
+   width: 0;
    padding-left: 1.25em;
    background-color: hsl(var(--grey-color) / .25);
    border: none;

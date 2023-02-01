@@ -50,7 +50,7 @@ body {
   color: hsl(var(--text-color));
   font-family: 'Lora', serif;
   /* font-family: 'Roboto', sans-serif; */
-  font-size: 1rem;
+  font-size: clamp(.7rem, 3vw, 1rem);
   transition: var(--dark-theme-transition);
 }
 

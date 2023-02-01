@@ -16,6 +16,7 @@ const props = defineProps({
 
 <style scoped>
 button {
+   flex-shrink: 0;
    width: 5em;
    aspect-ratio: 1;
    border-radius: 50%;

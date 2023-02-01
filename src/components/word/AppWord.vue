@@ -37,7 +37,8 @@ const props = defineProps({
    display: flex;
    justify-content: space-between;
    align-items: center;
-   gap: 3em;
+   gap: 1em 3em;
+   flex-wrap: wrap;
 }
 
 .meanings {
