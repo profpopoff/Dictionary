@@ -3,7 +3,10 @@ import { onMounted, ref } from 'vue'
 import CustomPlayButton from './ui/CustomPlayButton.vue'
 
 const props = defineProps({
-   phonetics: Array
+   audios: {
+      type: Array,
+      required: true
+   }
 })
 
 const audio = ref(null)
@@ -25,10 +28,8 @@ const audioClickHandle = () => {
 </script>
 
 <template>
-   <audio v-if="!!phonetics[0].audio" :src="phonetics[0].audio" @ended="isPlaying = !isPlaying" ref="audio"></audio>
-   <audio v-else-if="!!phonetics[1].audio" :src="phonetics[1].audio" @ended="isPlaying = !isPlaying"
-      ref="audio"></audio>
-   <audio v-else-if="!!phonetics[2].audio" :src="phonetics[2].audio" @ended="isPlaying = !isPlaying"
-      ref="audio"></audio>
-   <CustomPlayButton @click="audioClickHandle" :isPlaying="isPlaying" />
+   <div v-if="!!audios.length">
+      <audio v-if="!!audios[0]" :src="audios[0]" @ended="isPlaying = !isPlaying" ref="audio"></audio>
+      <CustomPlayButton @click="audioClickHandle" :isPlaying="isPlaying" />
+   </div>
 </template>
