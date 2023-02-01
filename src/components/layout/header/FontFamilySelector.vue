@@ -47,6 +47,10 @@ const changeHandle = () => {
    transform: rotate(90deg);
 }
 
+.select:hover select:focus+.icon {
+   transform: rotate(180deg);
+}
+
 select {
    padding-block: .5em;
    padding-right: 2em;

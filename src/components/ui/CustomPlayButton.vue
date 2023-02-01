@@ -37,6 +37,10 @@ button>* {
    transition: all .15s ease-in-out;
 }
 
+button:hover>* {
+   transform: scale(1.15);
+}
+
 .active {
    display: block;
    opacity: 1;
