@@ -9,15 +9,12 @@ const wordInfo = ref('')
 const isLoading = ref(false)
 
 const getWordInfo = async (word) => {
-  isLoading.value = true
   wordInfo.value = ''
   if (!!word) {
+    isLoading.value = true
     await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
       .then(response => response.json())
       .then(data => wordInfo.value = data)
-    isLoading.value = false
-  } else {
-    wordInfo.value = ''
     isLoading.value = false
   }
 }
