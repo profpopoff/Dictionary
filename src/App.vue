@@ -3,19 +3,22 @@ import { ref } from 'vue'
 import HeaderComponent from '@/components/AppHeader.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import AppWord from '@/components/AppWord.vue'
+import LoadingIndicator from './components/LoadingIndicator.vue'
 
 const wordInfo = ref('')
 const isLoading = ref(false)
 
 const getWordInfo = async (word) => {
+  isLoading.value = true
+  wordInfo.value = ''
   if (!!word) {
-    isLoading.value = true
     await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
       .then(response => response.json())
       .then(data => wordInfo.value = data)
     isLoading.value = false
   } else {
     wordInfo.value = ''
+    isLoading.value = false
   }
 }
 </script>
@@ -25,10 +28,9 @@ const getWordInfo = async (word) => {
 
   <main class="container">
     <SearchBar @get-word="getWordInfo" />
-    <AppWord v-if="wordInfo[0]" :wordInfo="wordInfo[0]" />
-    <h1 v-else-if="wordInfo.message">{{ wordInfo.message }}</h1>
-    <h2 v-else-if="isLoading">loading</h2>
-    <h2 v-else>ИСкать тут ^</h2>
+    <h1 v-if="wordInfo.message">{{ wordInfo.message }}</h1>
+    <AppWord v-else-if="wordInfo[0]" :wordInfo="wordInfo[0]" />
+    <LoadingIndicator v-else-if="isLoading" />
   </main>
 </template>
 
