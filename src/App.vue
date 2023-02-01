@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import HeaderComponent from '@/components/Header.vue'
+import HeaderComponent from '@/components/AppHeader.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import WordInfo from '@/components/WordInfo.vue'
 
