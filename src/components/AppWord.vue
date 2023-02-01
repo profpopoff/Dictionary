@@ -1,5 +1,6 @@
 <script setup>
 import WordAudio from './WordAudio.vue'
+import WordInfo from './WordInfo.vue';
 import WordMeaning from './WordMeaning.vue'
 
 const props = defineProps({
@@ -11,20 +12,9 @@ const props = defineProps({
 <template>
    <div class="word">
       <div class="headline">
-         <div class="info">
-            <h1>{{ wordInfo.word }}</h1>
-            <h3 v-if="!!wordInfo.phonetic">{{ wordInfo.phonetic }}</h3>
-            <h3 v-else-if="!!wordInfo.phonetics[0].text">{{
-               wordInfo.phonetics[0].text
-            }}</h3>
-            <h3 v-else-if="!!wordInfo.phonetics[1].text">{{
-               wordInfo.phonetics[1].text
-            }}</h3>
-            <h3 v-else-if="!!wordInfo.phonetics[2].text">{{
-               wordInfo.phonetics[2].text
-            }}</h3>
-         </div>
-         <WordAudio :phonetics="wordInfo.phonetics" />
+         <WordInfo :word="wordInfo.word"
+            :phonetics="[...new Set(wordInfo.phonetics.map(({ text }) => text).filter(notEmpty => notEmpty))]" />
+         <WordAudio :audios="wordInfo.phonetics.map(({ audio }) => audio).filter(notEmpty => notEmpty)" />
       </div>
       <div class="meanings">
          <WordMeaning v-for="meaning in wordInfo.meanings" :meaning="meaning" />
@@ -46,22 +36,7 @@ const props = defineProps({
    display: flex;
    justify-content: space-between;
    align-items: center;
-}
-
-.info {
-   display: flex;
-   flex-direction: column;
-   gap: .5em;
-}
-
-.info h1 {
-   font-size: 3em;
-}
-
-.info h3 {
-   font-family: 'Roboto', sans-serif;
-   font-weight: 400;
-   color: hsl(var(--accent-color));
+   gap: 3em;
 }
 
 .meanings {
