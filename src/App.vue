@@ -32,7 +32,6 @@ const getWordInfo = async (word) => {
 
 <template>
   <AppHeader class="container" />
-
   <main class="container">
     <SearchBar @get-word="getWordInfo" />
     <h1 v-if="wordInfo.message">{{ wordInfo.message }}</h1>
@@ -49,9 +48,12 @@ body {
   background-color: hsl(var(--background-color));
   color: hsl(var(--text-color));
   font-family: 'Lora', serif;
-  /* font-family: 'Roboto', sans-serif; */
   font-size: clamp(.7rem, 3vw, 1rem);
   transition: var(--dark-theme-transition);
+}
+
+body.sans-serif {
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
