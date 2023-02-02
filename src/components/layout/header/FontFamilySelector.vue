@@ -76,6 +76,10 @@ select {
    appearance: none;
 }
 
+select:focus {
+   outline: none;
+}
+
 option {
    font-weight: 400;
 }
