@@ -6,8 +6,8 @@ const word = ref('')
 </script>
 
 <template>
-   <form class="search-bar" @submit.prevent="$emit('getWord', word)">
-      <input class="search-bar__input" type="text" placeholder="Search..." v-model="word">
+   <form class="search-bar"  @submit.prevent="$emit('getWord', word)">
+      <input class="search-bar__input" required type="text" placeholder="Search..." v-model="word">
       <button class="search-bar__button" type="submit">
          <SearchIcon width="40%" />
       </button>
