@@ -6,23 +6,35 @@ const selectedFont = ref('serif')
 
 const fonts = ref([
    { text: 'Serif', value: 'serif' },
-   { text: 'Sans Serif', value: 'sans-serif' }
+   { text: 'Sans Serif', value: 'sans' },
+   { text: 'Monospace', value: 'mono' }
 ])
 
 onMounted(() => {
    if (!!localStorage.getItem('isSans')) {
-      selectedFont.value = 'sans-serif'
-      document.body.classList.add(selectedFont.value)
+      selectedFont.value = 'sans'
+      document.body.classList.add('sans')
+   } else if (!!localStorage.getItem('isMono')) {
+      selectedFont.value = 'mono'
+      document.body.classList.add('mono')
    }
 })
 
 const changeHandle = () => {
-   if (selectedFont.value === 'sans-serif') {
-      document.body.classList.add(selectedFont.value)
+   if (selectedFont.value === 'sans') {
+      document.body.classList.remove('mono')
+      document.body.classList.add('sans')
+      localStorage.removeItem('isMono')
       localStorage.setItem('isSans', true)
-   } else {
-      document.body.classList.remove('sans-serif')
+   } else if (selectedFont.value === 'mono') {
+      document.body.classList.remove('sans')
+      document.body.classList.add('mono')
       localStorage.removeItem('isSans')
+      localStorage.setItem('isMono', true)
+   } else {
+      document.body.classList.remove('sans', 'mono')
+      localStorage.removeItem('isSans')
+      localStorage.removeItem('isMono')
    }
 }
 </script>

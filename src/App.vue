@@ -44,8 +44,12 @@ body {
   transition: var(--dark-theme-transition);
 }
 
-body.sans-serif {
+body.sans {
   font-family: 'Roboto', sans-serif;
+}
+
+body.mono {
+  font-family: 'Roboto Mono', monospace;
 }
 
 .container {
