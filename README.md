@@ -2,7 +2,7 @@
     <img width="100" src="./src/assets/svg/logo-grey.svg" alt="Roommates logo">
 </p>
 
-<h1 align="center"></h1>Dictionary</h1>
+<h1 align="center">Dictionary</h1>
 
 <h2 align="center">
     <a href="https://profpopoff.github.io/Dictionary/">Live Demo</a>
