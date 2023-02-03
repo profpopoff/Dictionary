@@ -8,8 +8,6 @@
     <a href="https://profpopoff.github.io/Dictionary/">Live Demo</a>
 </h2>
 
----
-
 ![alt text](./src/assets/images/dictionary.png)
 
 ---
