@@ -6,34 +6,45 @@ import AppWord from '@/components/word/AppWord.vue'
 import LoadingIndicator from './components/LoadingIndicator.vue'
 
 const wordInfo = ref('')
-const isLoading = ref(true)
-const fetchError = ref({ status: false, word: '' })
+const isLoading = ref(false)
+const error = ref({ status: false, word: '' })
 
-onMounted(async () => {
-  await delay(500)
+onMounted(() => {
   getWordInfo('dictionary')
 })
 
 const getWordInfo = async (word) => {
-  const fetchStart = Date.now()
+  let isDone = false
+
+  fetchInfo(word)
+    .then(() => isDone = true)
+
+  await delay(250)
+
+  const checkIsDone = async () => {
+    if (!isDone) {
+      isLoading.value = true
+      await delay(1000)
+      checkIsDone()
+    } else {
+      isLoading.value = false
+    }
+  }
+  checkIsDone()
+}
+
+const fetchInfo = async (word) => {
   await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
     .then(response => response.json())
     .then(data => {
       if (Array.isArray(data)) {
-        fetchError.value = { status: false, word: '' }
+        error.value = { status: false, word: '' }
         wordInfo.value = data
       } else {
         throw new Error
       }
     })
-    .catch(() => fetchError.value = { status: true, word })
-    .finally(() => isLoading.value = false)
-  const fetchTime = Date.now() - fetchStart
-  if (fetchTime > 250) {
-    isLoading.value = true
-    await delay(750)
-    isLoading.value = false
-  }
+    .catch(() => error.value = { status: true, word })
 }
 
 const delay = ms => {
@@ -45,9 +56,10 @@ const delay = ms => {
   <AppHeader class="container" />
   <main class="container">
     <SearchBar @get-word="getWordInfo" />
-    <h2 class="error" v-if="fetchError.status">Sorry, but&nbsp;we couldn&rsquo;t find definitions for the word &laquo;<span>{{
-      fetchError.word
-    }}</span>&raquo;.</h2>
+    <h2 class="error" v-if="error.status">Sorry, but&nbsp;we couldn&rsquo;t find definitions for the word
+      &laquo;<span>{{
+        error.word
+      }}</span>&raquo;.</h2>
     <LoadingIndicator v-else-if="isLoading" />
     <AppWord v-else-if="wordInfo[0]" :wordInfo="wordInfo[0]" />
   </main>
