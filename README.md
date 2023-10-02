@@ -31,4 +31,4 @@ This is my solution to the <a href="https://www.frontendmentor.io/challenges/dic
 - Switch between light and dark themes
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
-- Have the correct color scheme chosen for them based on their computer preferences. Hint: Research prefers-color-scheme in CSS.
+- Have the correct color scheme chosen for them based on their computer preferences.
